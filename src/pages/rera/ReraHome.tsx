@@ -17,7 +17,6 @@ import {
   reraServices,
   backgroundImages,
   awards,
-  clients,
 } from "../../data/siteData";
 import SEO from "../../components/SEO";
 
