@@ -1,0 +1,573 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  Scale,
+  Phone,
+  BookOpen,
+  Shield,
+  Award,
+  Linkedin,
+  Mail,
+} from "lucide-react";
+import SectionWrapper from "../components/SectionWrapper";
+import BlogSection from "../components/home/BlogSection";
+
+import FloatingReraCard from "../components/home/FloatingReraCard";
+import AwardsSection from "../components/home/AwardsSection";
+import TestimonialsSection from "../components/home/TestimonialsSection";
+import AskQuerySection from "../components/home/AskQuerySection";
+import bgBanner from "../assets/bg-banner.jpeg";
+import {
+  practiceAreas,
+  backgroundImages,
+  coreValues,
+  heroSliderImages,
+  partners,
+} from "../data/siteData";
+import SEO from "../components/SEO";
+
+const Home = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const banners = [bgBanner, ...heroSliderImages];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % banners.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  return (
+    <div className="flex flex-col overflow-x-hidden">
+      <SEO
+        title="Vidhit Law Associates | Top Advocates & Legal Consultants in Patna"
+        description="Vidhit Law Associates is a premier law firm in Patna providing comprehensive legal solutions in Civil, Criminal, RERA, and Corporate Law."
+        keywords="Lawyer in Patna, Advocate in Patna, High Court Lawyer, RERA Consultant, Best Law Firm in Patna"
+      />
+      {/* 3.1 Hero Section */}
+      <section className="relative text-white py-20 lg:py-24 overflow-hidden flex items-center min-h-[85vh] bg-gray-900">
+        {/* Background Slider */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Slider Images */}
+          <AnimatePresence mode="popLayout">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5 }}
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${banners[currentSlide]})` }}
+            />
+          </AnimatePresence>
+
+          {/* Gradient Overlay for Depth - Left Fade Only */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent"></div>
+
+          {/* Animated Blobs */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-accent/10 blur-3xl"></div>
+          <div className="absolute top-1/2 -left-24 w-72 h-72 rounded-full bg-blue-500/10 blur-3xl"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            className="max-w-3xl"
+          >
+            <h5 className="text-accent font-semibold tracking-[0.2em] uppercase mb-4 flex items-center gap-3 text-sm">
+              <span className="w-8 h-0.5 bg-accent"></span>
+              Strategic Legal Solutions
+            </h5>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-6 drop-shadow-lg">
+              VIDHIT LAW ASSOCIATES
+            </h1>
+            <p className="text-lg md:text-xl text-gray-200 mb-2 font-light drop-shadow-md">
+              Professional | Strategic | Result-Oriented
+            </p>
+            <p className="text-base text-gray-300 mb-8 max-w-xl leading-relaxed italic border-l-4 border-accent pl-4">
+              "Where Law Meets Trust — Advice that Matters, Crafted in the Art
+              of Law"
+            </p>
+
+            <p className="text-gray-200 mb-8 max-w-2xl leading-relaxed text-base pl-1">
+              Full-service law firm providing ethical, precise, and
+              solution-oriented legal services. combining strong litigation
+              capabilities with strategic legal advisory to protect rights,
+              manage risks, and deliver effective outcomes.
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <Link
+                to="/practice-areas"
+                className="bg-accent hover:bg-accent-hover text-white font-semibold py-3 px-6 rounded-sm transition-all flex items-center gap-2 shadow-lg hover:shadow-accent/20 transform hover:-translate-y-1 text-sm uppercase tracking-wide"
+              >
+                View Practice Areas <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/contact"
+                className="border border-white/30 hover:bg-white/10 text-white font-semibold py-3 px-6 rounded-sm transition-all backdrop-blur-md hover:backdrop-blur-lg text-sm uppercase tracking-wide"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Floating RERA Card */}
+      <FloatingReraCard />
+
+      {/* 3.2 About the Firm - Redesigned to Match Team Page Style */}
+      <section className="py-24 bg-gradient-to-br from-slate-50 to-gray-100 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, #1e293b 10px, #1e293b 11px)`,
+            }}
+          ></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto pt-30 lg:py-2 px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-block px-4 py-1 bg-accent/10 text-accent text-sm font-bold uppercase tracking-widest rounded-full mb-6">
+                Who We Are
+              </span>
+              <h2 className="text-4xl font-serif font-bold text-primary mb-6 leading-tight">
+                Commitment to Justice & Excellence
+              </h2>
+              <p className="text-gray-600 mb-10 leading-relaxed text-lg">
+                VIDHIT Law Associates is a premier law firm committed to the
+                pursuit of justice through integrity, diligence, and
+                professional excellence. Based in Bihar, the Firm represents
+                clients before various Courts, Tribunals, and statutory
+                authorities, offering comprehensive legal support across
+                litigation, advisory, and dispute resolution.
+              </p>
+
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: Scale,
+                    title: "Comprehensive Practice",
+                    desc: "Represents clients before various Courts, Tribunals, and statutory authorities.",
+                    color: "from-blue-500 to-blue-600",
+                  },
+                  {
+                    icon: BookOpen,
+                    title: "In-Depth Research",
+                    desc: "Meticulous legal research to build unshakeable arguments and strategies.",
+                    color: "from-amber-500 to-amber-600",
+                  },
+                  {
+                    icon: Shield,
+                    title: "Risk Mitigation",
+                    desc: "Proactive legal counsel to prevent future disputes and protect interests.",
+                    color: "from-green-500 to-green-600",
+                  },
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}
+                    className="flex gap-5 p-6 bg-white rounded-lg shadow-md hover:shadow-xl active:shadow-xl transition-all duration-300 border border-gray-100 group"
+                  >
+                    <div
+                      className={`bg-gradient-to-br ${item.color} p-4 rounded-lg h-fit shadow-lg group-hover:scale-110 group-active:scale-110 transition-transform duration-300`}
+                    >
+                      <item.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 text-lg mb-2 group-hover:text-accent group-active:text-accent transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative order-first lg:order-last"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 transform rotate-6 rounded-2xl blur-xl"></div>
+              <div className="relative bg-white p-3 rounded-2xl shadow-2xl">
+                <img
+                  src={backgroundImages.court}
+                  alt="Legal Excellence"
+                  className="rounded-xl w-full h-[500px] object-cover"
+                />
+                {/* Overlay Stats */}
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-8 sm:left-8 sm:right-8 bg-white/95 backdrop-blur-sm p-3 sm:p-6 rounded-xl shadow-xl border border-gray-100">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
+                    <div>
+                      <div className="text-xl sm:text-3xl font-bold text-accent mb-1">
+                        15+
+                      </div>
+                      <div className="text-[10px] sm:text-xs text-gray-600 uppercase tracking-normal sm:tracking-wider leading-tight">
+                        Years Experience
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xl sm:text-3xl font-bold text-primary mb-1">
+                        500+
+                      </div>
+                      <div className="text-[10px] sm:text-xs text-gray-600 uppercase tracking-normal sm:tracking-wider leading-tight">
+                        Cases Won
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xl sm:text-3xl font-bold text-green-600 mb-1">
+                        98%
+                      </div>
+                      <div className="text-[10px] sm:text-xs text-gray-600 uppercase tracking-normal sm:tracking-wider leading-tight">
+                        Success Rate
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3.3 Core Values & Approach */}
+      <section className="py-24 bg-primary text-white border-y border-white/5 relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-10"
+          style={{ backgroundImage: `url(${backgroundImages.books})` }}
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl font-serif font-bold mb-8">
+                Our Professional Values
+              </h2>
+              <div className="space-y-6">
+                {coreValues.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex gap-4 p-6 bg-white/5 hover:bg-white/10 transition-colors rounded-sm border border-white/5"
+                  >
+                    <div className="mt-1">
+                      <item.icon className="h-8 w-8 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-white mb-2">
+                        {item.title}
+                      </h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-white/5 p-10 border border-white/10 rounded-sm backdrop-blur-sm">
+              <h3 className="text-2xl font-serif font-semibold text-accent mb-8">
+                Why Choose Us?
+              </h3>
+              <ul className="space-y-6 text-gray-300">
+                <li className="flex items-start gap-4">
+                  <span className="w-2 h-2 rounded-full bg-accent mt-2.5 shrink-0"></span>
+                  <p className="text-lg">
+                    Structured and time-bound legal processes with defined
+                    stages of engagement.
+                  </p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="w-2 h-2 rounded-full bg-accent mt-2.5 shrink-0"></span>
+                  <p className="text-lg">
+                    Practical, commercially viable, and solution-oriented legal
+                    advice.
+                  </p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="w-2 h-2 rounded-full bg-accent mt-2.5 shrink-0"></span>
+                  <p className="text-lg">
+                    Detailed legal research and analysis that leaves no stone
+                    unturned.
+                  </p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="w-2 h-2 rounded-full bg-accent mt-2.5 shrink-0"></span>
+                  <p className="text-lg">
+                    Proven track record of success in complex litigation and
+                    advisory matters.
+                  </p>
+                </li>
+              </ul>
+              <div className="mt-10">
+                <Link
+                  to="/about"
+                  className="text-accent hover:text-white font-semibold flex items-center gap-2 transition-colors uppercase tracking-widest text-sm"
+                >
+                  Read More About Us <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3.4 Practice Areas Snapshot - Redesigned with Image Cards */}
+      <SectionWrapper>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">
+            Practice Areas
+          </h2>
+          <div className="w-24 h-1 bg-accent mx-auto"></div>
+          <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
+            We offer specialized legal services across a broad spectrum of
+            practice areas, ensuring expert representation for every legal need.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {practiceAreas.slice(0, 8).map((area, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              className="group relative flex flex-col bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100/50 hover:-translate-y-1 h-full"
+            >
+              {/* Image Section */}
+              <div className="relative h-48 overflow-hidden rounded-t-xl">
+                <div
+                  className="absolute inset-0 bg-cover bg-center transform group-hover:scale-110 transition-transform duration-700"
+                  style={{ backgroundImage: `url(${area.backgroundImage})` }}
+                />
+                <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-slate-900/30 transition-colors duration-300" />
+              </div>
+
+              {/* Overlapping Icon */}
+              <div className="absolute top-48 left-6 -translate-y-1/2 z-20">
+                <div className="w-14 h-14 bg-slate-900 rounded-full flex items-center justify-center shadow-lg border-4 border-white group-hover:bg-accent transition-colors duration-300">
+                  {area.icon && <area.icon className="h-6 w-6 text-white" />}
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="pt-10 pb-8 px-6 flex flex-col flex-grow">
+                <h3 className="text-lg font-serif font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors line-clamp-2 text-left">
+                  {area.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed mb-6 line-clamp-3 text-left">
+                  {area.desc}
+                </p>
+                <div className="mt-auto text-left">
+                  <span className="inline-flex items-center text-sm font-bold text-accent group-hover:text-primary transition-colors tracking-wide uppercase cursor-pointer">
+                    View Detail{" "}
+                    <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            to="/practice-areas"
+            className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors border-b-2 border-accent pb-1"
+          >
+            View All Practice Areas <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </SectionWrapper>
+
+      {/* 3.5 RERA Services - Background Image Added */}
+      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-accent/5 skew-x-12 transform origin-top-right"></div>
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-overlay fixed-bg"
+          style={{ backgroundImage: `url(${backgroundImages.rera})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 to-slate-900/90"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <span className="text-accent font-semibold tracking-widest uppercase mb-4 block">
+            Specialized Division
+          </span>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">
+            Real Estate Regulatory & Advisory Services
+          </h2>
+          <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto font-light">
+            The Firm provides specialized regulatory and advisory support to
+            real estate stakeholders, ensuring compliance, legal clarity, and
+            effective resolution of disputes under applicable statutory
+            frameworks.
+          </p>
+
+          <Link
+            to="/rera"
+            className="inline-flex items-center bg-accent hover:bg-accent-hover text-white font-bold py-4 px-10 rounded-sm transition-all transform hover:-translate-y-1 shadow-xl hover:shadow-accent/20"
+          >
+            Explore RERA Services <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
+        </div>
+      </section>
+
+      {/* 3.4.5 Awards & Recognition */}
+      <AwardsSection />
+
+      {/* 3.6 Partners */}
+      <SectionWrapper background="light">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">
+            Partners
+          </h2>
+          <div className="w-24 h-1 bg-accent mx-auto"></div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          {partners.map((partner, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2, duration: 0.6 }}
+              className="group relative"
+            >
+              {/* Card Container */}
+              <div className="bg-white rounded-lg shadow-lg hover:shadow-2xl active:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100">
+                {/* Top Accent Bar */}
+                <div className="h-2 bg-gradient-to-r from-accent to-primary"></div>
+
+                <div className="p-10">
+                  {/* Profile Image Section */}
+                  <div className="flex flex-col sm:flex-row gap-8 items-center sm:items-start mb-8">
+                    <div className="relative flex-shrink-0">
+                      {/* Image with Decorative Ring */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full transform group-hover:scale-110 group-active:scale-110 transition-transform duration-500 blur-md"></div>
+                      <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-xl ring-4 ring-accent/10">
+                        <img
+                          src={partner.image}
+                          alt={partner.name}
+                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-active:grayscale-0 transition-all duration-500"
+                        />
+                      </div>
+                      {/* Verified Badge */}
+                      <div className="absolute -bottom-2 -right-2 bg-accent text-white p-2 rounded-full shadow-lg">
+                        <Award className="h-5 w-5" />
+                      </div>
+                    </div>
+
+                    {/* Info Section */}
+                    <div className="flex-1 text-center sm:text-left">
+                      <h3 className="text-2xl font-serif font-bold text-primary mb-2 group-hover:text-accent group-active:text-accent transition-colors">
+                        {partner.name}
+                      </h3>
+
+                      <div className="flex items-center justify-center sm:justify-start gap-2 mb-3">
+                        <span className="inline-block px-3 py-1 bg-gradient-to-r from-accent/10 to-primary/10 text-accent text-xs font-bold uppercase tracking-wider rounded-full border border-accent/20">
+                          {partner.role}
+                        </span>
+                      </div>
+
+                      <p className="text-gray-700 font-semibold mb-4 flex items-center justify-center sm:justify-start gap-2">
+                        <Scale className="h-4 w-4 text-accent" />
+                        {partner.designation}
+                      </p>
+
+                      {/* Social Links - Placeholder */}
+                      <div className="flex gap-3 justify-center sm:justify-start">
+                        <button className="p-2 bg-gray-100 hover:bg-accent active:bg-accent hover:text-white active:text-white text-gray-600 rounded-full transition-colors">
+                          <Linkedin className="h-4 w-4" />
+                        </button>
+                        <button className="p-2 bg-gray-100 hover:bg-accent active:bg-accent hover:text-white active:text-white text-gray-600 rounded-full transition-colors">
+                          <Mail className="h-4 w-4" />
+                        </button>
+                        <button className="p-2 bg-gray-100 hover:bg-accent active:bg-accent hover:text-white active:text-white text-gray-600 rounded-full transition-colors">
+                          <Phone className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-6"></div>
+
+                  {/* Description */}
+                  <p className="text-gray-600 leading-relaxed text-base">
+                    {partner.description}
+                  </p>
+                </div>
+
+                {/* Bottom Gradient Accent */}
+                <div className="h-1 bg-gradient-to-r from-primary/5 via-accent/20 to-primary/5"></div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* 3.6.5 Testimonials */}
+      <TestimonialsSection />
+
+      {/* 3.7 Blog Section */}
+      <BlogSection />
+
+      {/* 3.8 Contact CTA - Streamlined */}
+      <section className="py-24 bg-primary text-white text-center relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{ backgroundImage: `url(${backgroundImages.team})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/80"></div>
+
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 leading-tight">
+            Need Expert Legal Guidance?
+          </h2>
+          <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-light">
+            We are here to help you navigate complex legal challenges with ease
+            and confidence.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center bg-accent hover:bg-accent-hover text-white font-bold py-4 px-10 rounded-sm transition-all transform hover:-translate-y-1 shadow-xl hover:shadow-accent/20"
+          >
+            Enquire Now <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
+        </div>
+      </section>
+
+      {/* 3.9 Ask Any Query Section */}
+      <AskQuerySection />
+    </div>
+  );
+};
+
+export default Home;
