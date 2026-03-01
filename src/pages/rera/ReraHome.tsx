@@ -621,27 +621,7 @@ const ReraHome = () => {
       </section>
 
       {/* --- CLIENTS SECTION --- */}
-      <section className="py-12 md:py-16 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-sm md:text-xl font-bold text-gray-400 mb-6 md:mb-8 uppercase tracking-widest">
-            Trusted By Builders & Agencies Nationwide
-          </h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-            {clients.map((client) => (
-              <div
-                key={client.id}
-                className="w-24 md:w-32 h-12 md:h-16 flex items-center justify-center"
-              >
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    
 
       {/* --- CTA BOTTOM --- */}
       <div className="bg-[#0a1e3c] py-12 relative overflow-hidden">
