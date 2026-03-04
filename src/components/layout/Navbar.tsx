@@ -28,7 +28,7 @@ const Navbar = () => {
   // Top Row Links
   const topRowLinks: NavLink[] = [
     { name: "News & Insights", path: "/blogs" },
-    { name: "Awards", path: "#" }, // Placeholder
+    { name: "Awards", path: "/awards" },
     { name: "Careers", path: "/career" },
     { name: "Contact", path: "/contact" },
   ];
@@ -45,7 +45,8 @@ const Navbar = () => {
       path: "#",
       children: [
         { name: "Practice Areas", path: "/practice-areas" },
-        { name: "RERA Services", path: "https://adv-abhinay-odij.vercel.app/" },
+        { name: "Courts & Tribunals", path: "/courts-and-tribunals" },
+        { name: "RERA Services", path: "https://lexrera.vercel.app/" },
       ],
     },
   ];
@@ -58,27 +59,42 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 border-b border-transparent bg-white ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent bg-white ${
         scrolled ? "shadow-md" : "border-b-gray-100"
       }`}
     >
       {/* Top Bar - Contact Info */}
-      <div className="bg-[#0b1120] text-gray-300 py-1 md:py-1.5 border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end items-center space-x-4 md:space-x-6 text-[9px] md:text-[11px] uppercase tracking-wider font-semibold">
-          <a
-            href={`tel:${brand.phoneRaw}`}
-            className="flex items-center gap-1.5 hover:text-white transition-colors"
-          >
-            <Phone className="h-2.5 w-2.5 md:h-3 md:w-3 text-accent" />
-            <span>{brand.phone}</span>
-          </a>
-          <a
-            href={`mailto:${brand.email}`}
-            className="flex items-center gap-1.5 hover:text-white transition-colors"
-          >
-            <Mail className="h-2.5 w-2.5 md:h-3 md:w-3 text-accent" />
-            <span>{brand.email}</span>
-          </a>
+      <div className="bg-[#0b1120] text-gray-300 py-2 md:py-1.5 border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end items-center text-[9px] md:text-[11px] uppercase tracking-wider font-semibold">
+          <div className="flex flex-row items-center gap-5 sm:gap-4 md:gap-6">
+            <a
+              href={`tel:${brand.phoneRaw}`}
+              className="flex items-center gap-1.5 hover:text-white transition-colors group"
+            >
+              <div className="w-8 h-8 sm:w-auto sm:h-auto bg-gray-800 sm:bg-transparent rounded-full flex items-center justify-center group-hover:bg-gray-700 sm:group-hover:bg-transparent transition-colors">
+                <Phone className="h-3.5 w-3.5 sm:h-2.5 sm:w-2.5 md:h-3 md:w-3 text-accent shrink-0" />
+              </div>
+              <span className="hidden sm:inline">{brand.phone}</span>
+            </a>
+            <a
+              href={`tel:${brand.altPhoneRaw}`}
+              className="flex items-center gap-1.5 hover:text-white transition-colors group"
+            >
+              <div className="w-8 h-8 sm:w-auto sm:h-auto bg-gray-800 sm:bg-transparent rounded-full flex items-center justify-center group-hover:bg-gray-700 sm:group-hover:bg-transparent transition-colors">
+                <Phone className="h-3.5 w-3.5 sm:h-2.5 sm:w-2.5 md:h-3 md:w-3 text-accent shrink-0" />
+              </div>
+              <span className="hidden sm:inline">{brand.altPhone}</span>
+            </a>
+            <a
+              href={`mailto:${brand.email}`}
+              className="flex items-center gap-1.5 hover:text-white transition-colors group"
+            >
+              <div className="w-8 h-8 sm:w-auto sm:h-auto bg-gray-800 sm:bg-transparent rounded-full flex items-center justify-center group-hover:bg-gray-700 sm:group-hover:bg-transparent transition-colors">
+                <Mail className="h-4 w-4 sm:h-2.5 sm:w-2.5 md:h-3 md:w-3 text-accent shrink-0" />
+              </div>
+              <span className="hidden sm:inline">{brand.email}</span>
+            </a>
+          </div>
         </div>
       </div>
       <div
@@ -149,6 +165,19 @@ const Navbar = () => {
                         }`}
                       />
                     </button>
+                  ) : link.path.startsWith("http") ? (
+                    <a
+                      href={link.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`relative text-[15px] uppercase tracking-wider font-bold transition-colors duration-300 py-2 ${
+                        isActive(link.path)
+                          ? "text-accent"
+                          : "text-slate-800 hover:text-accent"
+                      }`}
+                    >
+                      {link.name}
+                    </a>
                   ) : (
                     <Link
                       to={link.path}
@@ -172,19 +201,35 @@ const Navbar = () => {
                         transition={{ duration: 0.2 }}
                         className="absolute top-full right-0 w-56 bg-white shadow-xl rounded-sm overflow-hidden border border-gray-100 py-2"
                       >
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.name}
-                            to={child.path}
-                            className={`block px-5 py-3 text-sm font-semibold uppercase tracking-wide hover:bg-gray-50 transition-colors ${
-                              isActive(child.path)
-                                ? "text-accent bg-gray-50"
-                                : "text-gray-600 hover:text-accent"
-                            }`}
-                          >
-                            {child.name}
-                          </Link>
-                        ))}
+                        {link.children.map((child) =>
+                          child.path.startsWith("http") ? (
+                            <a
+                              key={child.name}
+                              href={child.path}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`block px-5 py-3 text-sm font-semibold uppercase tracking-wide hover:bg-gray-50 transition-colors ${
+                                isActive(child.path)
+                                  ? "text-accent bg-gray-50"
+                                  : "text-gray-600 hover:text-accent"
+                              }`}
+                            >
+                              {child.name}
+                            </a>
+                          ) : (
+                            <Link
+                              key={child.name}
+                              to={child.path}
+                              className={`block px-5 py-3 text-sm font-semibold uppercase tracking-wide hover:bg-gray-50 transition-colors ${
+                                isActive(child.path)
+                                  ? "text-accent bg-gray-50"
+                                  : "text-gray-600 hover:text-accent"
+                              }`}
+                            >
+                              {child.name}
+                            </Link>
+                          ),
+                        )}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -228,22 +273,51 @@ const Navbar = () => {
                         {link.name}
                       </div>
                       <div className="pl-4 space-y-3 border-l-2 border-gray-100/50">
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.name}
-                            to={child.path}
-                            onClick={() => setIsOpen(false)}
-                            className={`block text-xs font-bold uppercase tracking-wide hover:text-accent transition-colors ${
-                              isActive(child.path)
-                                ? "text-accent"
-                                : "text-slate-600"
-                            }`}
-                          >
-                            {child.name}
-                          </Link>
-                        ))}
+                        {link.children.map((child) =>
+                          child.path.startsWith("http") ? (
+                            <a
+                              key={child.name}
+                              href={child.path}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setIsOpen(false)}
+                              className={`block text-xs font-bold uppercase tracking-wide hover:text-accent transition-colors ${
+                                isActive(child.path)
+                                  ? "text-accent"
+                                  : "text-slate-600"
+                              }`}
+                            >
+                              {child.name}
+                            </a>
+                          ) : (
+                            <Link
+                              key={child.name}
+                              to={child.path}
+                              onClick={() => setIsOpen(false)}
+                              className={`block text-xs font-bold uppercase tracking-wide hover:text-accent transition-colors ${
+                                isActive(child.path)
+                                  ? "text-accent"
+                                  : "text-slate-600"
+                              }`}
+                            >
+                              {child.name}
+                            </Link>
+                          ),
+                        )}
                       </div>
                     </div>
+                  ) : link.path!.startsWith("http") ? (
+                    <a
+                      href={link.path!}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsOpen(false)}
+                      className={`block text-sm uppercase tracking-wider font-bold hover:text-accent transition-colors ${
+                        isActive(link.path!) ? "text-accent" : "text-slate-800"
+                      }`}
+                    >
+                      {link.name}
+                    </a>
                   ) : (
                     <Link
                       to={link.path!}

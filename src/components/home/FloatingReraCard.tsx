@@ -1,5 +1,4 @@
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const FloatingReraCard = () => {
@@ -41,13 +40,15 @@ const FloatingReraCard = () => {
 
         {/* Link */}
         <div className="border-t border-gray-700/50 pt-6">
-          <Link
-            to="/rera"
+          <a
+            href="https://lexrera.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase hover:text-[#FF8C00] transition-colors group"
           >
             RERA Services{" "}
             <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-          </Link>
+          </a>
         </div>
 
         {/* Decorative corner accent (visual only) */}
