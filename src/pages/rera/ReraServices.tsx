@@ -15,7 +15,12 @@ const services = [
     title: "PRE-PROJECT ASSISTANCE",
     path: "/pre-project",
     desc: "Comprehensive guidance and assistance to developers before launching a project under RERA.",
-    highlights: ["Pre-Project Assistance"],
+    highlights: [
+      "Pre-RERA Project Scrutiny",
+      "Documentation Drafting & Vetting",
+      "Statutory Documents Assistance",
+      "Approvals and NOCs Vetting",
+    ],
   },
   {
     icon: Users,

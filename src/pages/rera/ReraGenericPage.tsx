@@ -155,6 +155,7 @@ const ReraGenericPage = () => {
           {/* Left Content Column */}
           <div className="lg:col-span-2 space-y-16">
             {/* Key Services */}
+            {detail.keyServices && detail.keyServices.length > 0 && (
             <section>
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 bg-accent/10 rounded-lg">
@@ -180,8 +181,10 @@ const ReraGenericPage = () => {
                 ))}
               </div>
             </section>
+            )}
 
             {/* Process Workflow */}
+            {detail.process && detail.process.length > 0 && (
             <section>
               <div className="flex items-center gap-3 mb-8">
                 <div className="p-2 bg-blue-100 rounded-lg">
@@ -205,8 +208,10 @@ const ReraGenericPage = () => {
                 ))}
               </div>
             </section>
+            )}
 
             {/* Deliverables */}
+            {detail.deliverables && detail.deliverables.length > 0 && (
             <section>
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 bg-purple-100 rounded-lg">
@@ -231,6 +236,32 @@ const ReraGenericPage = () => {
                 </ul>
               </div>
             </section>
+            )}
+
+            {/* Extra Lists */}
+            {detail.extraLists && detail.extraLists.map((list, idx) => (
+              <section key={idx}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 bg-indigo-100 rounded-lg">
+                    <CheckCircle className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-800">
+                    {list.title}
+                  </h2>
+                </div>
+                <div className="grid grid-cols-1 gap-3">
+                  {list.items.map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-3 p-4 bg-white rounded-sm border border-gray-100 shadow-sm transition-colors"
+                    >
+                      <div className="h-2 w-2 rounded-full bg-accent mt-2.5 shrink-0"></div>
+                      <span className="text-gray-700 font-medium">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ))}
           </div>
 
           {/* Right Sidebar - Sticky */}

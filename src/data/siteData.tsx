@@ -76,9 +76,13 @@ export interface ReraPackage {
 export interface ReraServiceDetail {
   title: string;
   description: string;
-  keyServices: string[];
-  process: string[];
-  deliverables: string[];
+  keyServices?: string[];
+  process?: string[];
+  deliverables?: string[];
+  extraLists?: {
+    title: string;
+    items: string[];
+  }[];
 }
 
 export interface CoreValue {
@@ -374,21 +378,47 @@ export const reraPackages: ReraPackage[] = [
 
 export const reraServiceDetails: Record<string, ReraServiceDetail> = {
   "pre-project": {
-    title: "Pre-Project Assistance",
-    description:
-      "Before a project launch, thorough due diligence and documentation are critical. We assist promoters in structuring their projects to ensure seamless RERA compliance from day one, minimizing future legal risks.",
-    keyServices: ["Pre-Project Assistance"],
-    process: [
-      "Initial Consultation & Document Collection",
-      "Legal Vetting of Land & Approvals",
-      "Gap Analysis Report",
-      "Rectification & Final Compliance Readiness",
-    ],
-    deliverables: [
-      "Due Diligence Report",
-      "Vetted Draft Agreement for Sale",
-      "Compliance Checklist",
-    ],
+    title: "Pre-Registration Services - Assistance",
+    description: "Our comprehensive Pre-RERA services ensure complete compliance prior to project launch, offering strategic guidance and scrutiny at crucial planning stages.",
+    keyServices: [],
+    process: [],
+    deliverables: [],
+    extraLists: [
+      {
+        title: "Pre-RERA Project Scrutiny",
+        items: [
+          "Conducted by experienced RERA professionals",
+          "Supported by a multidisciplinary team of Architects, Chartered Accountants, and Civil Engineers"
+        ]
+      },
+      {
+        title: "Documentation Drafting & Vetting",
+        items: [
+          "Development Agreement & Registration",
+          "Affidavits and Declarations",
+          "Agreement for Sale",
+          "Allotment Letter",
+          "SALE DEED"
+        ]
+      },
+      {
+        title: "Statutory & Supporting Documents",
+        items: [
+          "Assistance in preparation, compilation, and verification of statutory and supporting documents"
+        ]
+      },
+      {
+        title: "Approvals and NOCs",
+        items: [
+          "Vetting and assistance for approvals and NOCs, including:",
+          "Building Plan / Map Approval",
+          "Fire Department NOC",
+          "Airport Authority NOC",
+          "Environmental Clearance",
+          "Other statutory approvals, as applicable"
+        ]
+      }
+    ]
   },
   "agent-services": {
     title: "Agent Services",
